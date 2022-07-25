@@ -46,7 +46,12 @@ pub fn build(b: *std.build.Builder) void {
     api_tests.setTarget(target);
     api_tests.setBuildMode(mode);
 
+    const wav_tests = b.addTest("src/wavefront_obj.zig");
+    wav_tests.setTarget(target);
+    wav_tests.setBuildMode(mode);
+
     const test_step = b.step("test", "Run unit tests");
     test_step.dependOn(&exe_tests.step);
     test_step.dependOn(&api_tests.step);
+    test_step.dependOn(&wav_tests.step);
 }
